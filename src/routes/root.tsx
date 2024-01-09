@@ -6,12 +6,11 @@ export default function Root() {
         <nav className="p-3 flex justify-between shadow-xl items-center">
         <h1 className="text-4xl font-bold">osisi</h1>
         <div>
-            Hi
+        <Link to={'/create'}>
+          Create Family
+        </Link>
         </div>
         </nav>
-        <Link to={'/create'}>
-            lol
-        </Link>
         <Outlet/>
       </div>
     );
