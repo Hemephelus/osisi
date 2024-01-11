@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import usePostRequest from "../../hooks/usePostRequest";
 import { generateId } from "../../utils/generate";
+import {useOsisiContext} from "../../context/useOsisiContext"
 
 interface Profile {
   first_name: "";
@@ -13,8 +14,7 @@ interface Profile {
 }
 
 function Form() {
-  const OSISI_URL =
-    "https://script.google.com/macros/s/AKfycbxSMJyGCMKWLaAqB7gXyjt4_k-SiZrmR3dzADzJe5dKktT0xIV265UA_ZD7FHMsnAXl/exec";
+  const { OSISI_URL } = useOsisiContext();
   const initialProfile = {
     first_name: "",
     middle_name: "",
