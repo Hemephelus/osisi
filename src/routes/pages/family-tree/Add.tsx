@@ -13,7 +13,7 @@ interface Profile {
   id: "";
 }
 
-function Form() {
+function Add() {
   const { OSISI_URL } = useOsisiContext();
   const initialProfile = {
     first_name: "",
@@ -214,4 +214,4 @@ function Form() {
 // osisi/family-tree/add?referer_id=null&relationship=self
 // osisi/family-tree/update?id=
 // osisi/family-tree/view?id=
-export default Form;
+export default Add;

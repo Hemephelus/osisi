@@ -17,8 +17,23 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children:[
       {
-        path: "/create",
+        path: "/family-tree",
         element: <Form />,
+        errorElement: <ErrorPage />,
+        children:[
+          {
+            path: "/family-tree/add",
+            element: <Form />,
+          },
+          {
+            path: "/family-tree/update",
+            element: <Form />,
+          },
+          {
+            path: "/family-tree/view",
+            element: <Form />,
+          },
+        ]
       },
     ],
   },
