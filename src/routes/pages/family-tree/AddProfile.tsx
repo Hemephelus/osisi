@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import usePostRequest from "../../hooks/usePostRequest";
-import { generateId } from "../../utils/generate";
-import {useOsisiContext} from "../../context/useOsisiContext"
+import usePostRequest from "@hooks/usePostRequest";
+import { generateId } from "@utils/generate";
+import {useOsisiContext} from "@context/useOsisiContext"
 
 interface Profile {
   first_name: "";
@@ -13,7 +13,7 @@ interface Profile {
   id: "";
 }
 
-function Add() {
+function AddProfile() {
   const { OSISI_URL } = useOsisiContext();
   const initialProfile = {
     first_name: "",
@@ -214,4 +214,4 @@ function Add() {
 // osisi/family-tree/add?referer_id=null&relationship=self
 // osisi/family-tree/update?id=
 // osisi/family-tree/view?id=
-export default Add;
+export default AddProfile;
