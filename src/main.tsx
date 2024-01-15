@@ -7,11 +7,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Form from './routes/pages/Form';
+import Form from '@routes/pages/Form';
 import AddProfile from '@routes/pages/family-tree/AddProfile';
 import UpDateProfile from '@routes/pages/family-tree/UpDateProfile';
 import ProfileDetail from '@routes/pages/family-tree/ProfileDetail';
-
 
 const router = createBrowserRouter([
   {

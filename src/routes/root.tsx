@@ -10,7 +10,7 @@ export default function Root() {
         <nav className="p-3 flex justify-between shadow-xl items-center">
         <h1 className="text-4xl font-bold">osisi</h1>
         <div>
-        <Link to={'/create'}>
+        <Link to={'/family-tree/add?referer_id=null&relationship=self'}>
           Create Family
         </Link>
         </div>

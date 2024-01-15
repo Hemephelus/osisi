@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import usePostRequest from "@hooks/usePostRequest";
 import { generateId } from "@utils/generate";
-import {useOsisiContext} from "@context/useOsisiContext"
+import { useOsisiContext } from "@context/useOsisiContext";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 interface Profile {
   first_name: "";
@@ -22,20 +23,29 @@ function AddProfile() {
     sex: "",
     status: "",
     date_of_birth: "",
-    id: generateId()
+    id: generateId(),
   };
 
+  const navigate = useNavigate();
+  let [searchParams] = useSearchParams();
+  let [referer_id, relationship] = [
+    searchParams.get("referer_id"),
+    searchParams.get("relationship"),
+  ];
   const [profile, setProfile] = useState(initialProfile);
   const [response, isLoading, error, postRequest] = usePostRequest(OSISI_URL, {
     api_function: "profile",
-    payload: profile,
+    payload: {
+      profile,
+      referer_id: `${referer_id}` || "null",
+      relationship: `${relationship}` || "self",
+    },
   });
 
   useEffect(() => {
     if (response) {
       //  Navigate to different page.
-      console.log(response);
-      
+      navigate("/family-tree/detail?id=" + profile.id);
     }
   }, [response]);
 
@@ -44,8 +54,6 @@ function AddProfile() {
       let newProfile = { ...profile };
       newProfile[input] = value;
       setProfile(newProfile);
-      console.log(newProfile);
-      
     } else {
       console.warn(
         `Invalid value type for profile property "${input}": ${typeof value}`
