@@ -1,51 +1,40 @@
 import React, { useEffect } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { CiEdit } from "react-icons/ci";
 import useGetRequest from "@hooks/useGetRequest";
 import { useOsisiContext } from "@context/useOsisiContext";
+import { formatDate } from "@utils/formatDate";
+import ProfileSkeleton from "./components/ProfileSkeleton";
 
-type YourDataType = {
-  // Define the structure of your data here
-  // For example:
-  id: number;
-  name: string;
-  // ... other properties
-} | null;
+interface Profile {
+  first_name: "";
+  middle_name: "";
+  last_name: "";
+  sex: "";
+  status: "";
+  date_of_birth: "";
+  id: "";
+}
 
 function ProfileDetail() {
   let [searchParams] = useSearchParams();
   const { OSISI_URL } = useOsisiContext();
+  const [profile, setProfile] = React.useState<Profile>();
   let id = searchParams.get("id");
 
-  let [data, isLoading, error] = useGetRequest(`${OSISI_URL}?id=${id}`);
-  
+  let [data, isLoading, error] = useGetRequest(`${OSISI_URL}?id=${id}&request_type=get_profile`);
+
   useEffect(() => {
     if (data) {
-      console.log(data.name);
+      setProfile(data.data[0])
+      console.log();
+      
     }
   }, [data]);
-  // const { OSISI_URL } = useOsisiContext();
-  // const initialProfile = {
-  //   first_name: "",
-  //   middle_name: "",
-  //   last_name: "",
-  //   sex: "",
-  //   status: "",
-  //   date_of_birth: "",
-  //   id: generateId()
-  // };
 
-  // const navigate = useNavigate();
-  // let { referer_id, relationship } = useParams();
-  // const [profile, setProfile] = useState(initialProfile);
-  // const [response, isLoading, error, postRequest] = usePostRequest(OSISI_URL, {
-  //   api_function: "profile",
-  //   payload: {
-  //     profile,
-  //     referer_id:`${referer_id}`||'null',
-  //     relationship:`${relationship}`||'self',
-  //   }
-  // });
+  // const { OSISI_URL } = useOsisiContext();
+
+
 
   // useEffect(() => {
   //   if (response) {
@@ -71,21 +60,37 @@ function ProfileDetail() {
   //     postRequest();
   //   }
   // }
+  
+  if (error) {
+    return (
+      <div className="flex justify-center items-center text-2xl">
+        Error: {error.message}
+      </div>
+    );
+  }
+
+  if(isLoading){
+    return(
+      <ProfileSkeleton/>
+    )
+  }
+
+
   return (
     <section className="px-[5%] py-[5%] flex gap-8 flex-col sec-font  bg-[#00000010] shadow-2xl border">
       <section className=" flex justify-center items-center flex-col gap-4 capitalize w-full">
         <figure className="h-[100px] w-[100px] rounded-full bg-[#FFFDD0] text-[#691540] flex items-center justify-center text-5xl pri-font ">
-          N
+        {profile?.first_name[0]}
         </figure>
         <Link to={"/"} title="edit">
           <CiEdit size={24} />
         </Link>
-        <p className="text-center text-2xl">nwachukwu samuel ujubuonu</p>
+        <p className="text-center text-2xl">{profile?.first_name} {profile?.middle_name} {profile?.last_name}</p>
         <p>
-          <span>1999-10-24</span>
+          <span>{formatDate(profile?.date_of_birth)}</span>
         </p>
         <p>
-          <span>Living</span> {"<|>"} <span>Male</span>
+          <span>{profile?.status}</span> {"<|>"} <span>{profile?.sex}</span>
         </p>
       </section>
 

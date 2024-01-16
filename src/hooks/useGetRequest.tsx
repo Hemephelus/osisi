@@ -1,9 +1,12 @@
-import { useState, useEffect, SetStateAction } from "react";
+import React, {useEffect, SetStateAction } from "react";
 
 function useGetRequest(url: string) {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // const [data, setData] = useState(null);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [error, setError] = useState(null);
+  const [data, setData] = React.useState<any>(null);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const [error, setError] = React.useState<any>(null);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -28,11 +31,9 @@ function useGetRequest(url: string) {
           console.log(error.name); // the type of error
           console.log(error.message); // the description of the error
           console.log(error.stack); // the stack trace of the error
-        } else {
-          // handle other errorss
           setIsLoading(false);
-          setError(error as SetStateAction<null>);
-        }
+          setError(error);
+        } 
       }
     }
 
@@ -42,7 +43,8 @@ function useGetRequest(url: string) {
       abortController.abort();
     };
   }, [url]);
-
+  console.log(error);
+  
   return [data, isLoading, error];
 }
 
