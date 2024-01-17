@@ -11,6 +11,7 @@ interface Profile {
   sex: "";
   status: "";
   date_of_birth: "";
+  title: "";
   id: "";
 }
 
@@ -23,6 +24,7 @@ function AddProfile() {
     sex: "",
     status: "",
     date_of_birth: "",
+    title: "",
     id: generateId(),
   };
 
@@ -78,6 +80,21 @@ function AddProfile() {
         }}
       >
         <section className=" flex flex-wrap gap-4">
+        <div>
+            <label htmlFor="title" className="text-sm">
+              Title
+            </label>
+            <br />
+            <input
+              type="text"
+              id="title"
+              value={profile.title}
+              className="bg-transparent border-b outline-none"
+              onChange={(e) => {
+                updateProfile(e.target.value, "title");
+              }}
+            />
+          </div>
           <div>
             <label htmlFor="first_name" className="text-sm">
               First Name*
@@ -94,6 +111,7 @@ function AddProfile() {
               required
             />
           </div>
+          
           <div>
             <label htmlFor="middle_name" className="text-sm">
               Middle Name
@@ -111,7 +129,7 @@ function AddProfile() {
           </div>
           <div>
             <label htmlFor="last_name" className="text-sm">
-              Last Name*
+              Last Name
             </label>
             <br />
             <input
@@ -122,7 +140,7 @@ function AddProfile() {
               onChange={(e) => {
                 updateProfile(e.target.value, "last_name");
               }}
-              required
+              
             />
           </div>
         </section>
@@ -184,6 +202,7 @@ function AddProfile() {
                 onChange={(e) => {
                   updateProfile(e.target.value, "status");
                 }}
+                required
               />{" "}
               <label htmlFor="deceased">Deceased</label>
             </div>
@@ -192,7 +211,7 @@ function AddProfile() {
 
         <section className="">
           <label htmlFor="date_of_birth" className="text-sm">
-            Date of Birth*
+            Date of Birth
           </label>
           <br />
           <input

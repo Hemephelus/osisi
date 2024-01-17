@@ -26,54 +26,24 @@ function ProfileDetail() {
 
   useEffect(() => {
     if (data) {
-      setProfile(data.data[0])
-      console.log();
-      
+      setProfile(data.data[0])      
     }
   }, [data]);
-
-  // const { OSISI_URL } = useOsisiContext();
-
-
-
-  // useEffect(() => {
-  //   if (response) {
-  //     //  Navigate to different page.
-  //     navigate("/family-tree/detail?id="+profile.id);
-  //   }
-  // }, [response]);
-
-  // function updateProfile(value: string, input: keyof Profile): void {
-  //   if (typeof value === "string") {
-  //     let newProfile = { ...profile };
-  //     newProfile[input] = value;
-  //     setProfile(newProfile);
-  //   } else {
-  //     console.warn(
-  //       `Invalid value type for profile property "${input}": ${typeof value}`
-  //     );
-  //   }
-  // }
-
-  // function uploadProfile() {
-  //   if (typeof postRequest === "function") {
-  //     postRequest();
-  //   }
-  // }
-  
-  if (error) {
-    return (
-      <div className="flex justify-center items-center text-2xl">
-        Error: {error.message}
-      </div>
-    );
-  }
-
+ 
   if(isLoading){
     return(
       <ProfileSkeleton/>
-    )
-  }
+      )
+    }
+
+
+    if (error) {
+      return (
+        <div className="flex justify-center items-center text-2xl">
+          Error: {error.message}
+        </div>
+      );
+    }
 
 
   return (

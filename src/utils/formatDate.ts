@@ -1,4 +1,5 @@
 export function formatDate(dateString = "1999-10-23T23:00:00.000Z") {
+  if(dateString === '')return ''
   // Create a Date object from the UTC timestamp  
   const utcDate = new Date(dateString);
 

@@ -9,7 +9,7 @@ function useGetRequest(url: string) {
   const [error, setError] = React.useState<any>(null);
 
   useEffect(() => {
-    const abortController = new AbortController();
+    // const abortController = new AbortController();
 
     async function fetchData() {
       try {
@@ -18,12 +18,13 @@ function useGetRequest(url: string) {
           //   headers: {
           //     'Content-Type': 'application/json'
           //   },
-          signal: abortController.signal,
+          // signal: abortController.signal,
         });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
+        
         setData(data);
         setIsLoading(false);
       } catch (error) {
@@ -39,11 +40,10 @@ function useGetRequest(url: string) {
 
     fetchData();
 
-    return () => {
-      abortController.abort();
-    };
+    // return () => {
+    //   abortController.abort();
+    // };
   }, [url]);
-  console.log(error);
   
   return [data, isLoading, error];
 }
