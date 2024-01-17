@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import usePostRequest from "@hooks/usePostRequest";
 import { generateId } from "@utils/generate";
 import { useOsisiContext } from "@context/useOsisiContext";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 interface Profile {
   first_name: "";

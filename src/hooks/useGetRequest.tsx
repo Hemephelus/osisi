@@ -1,4 +1,4 @@
-import React, {useEffect, SetStateAction } from "react";
+import React, {useEffect } from "react";
 
 function useGetRequest(url: string) {
   // const [data, setData] = useState(null);
