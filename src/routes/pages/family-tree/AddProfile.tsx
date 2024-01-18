@@ -71,14 +71,18 @@ function AddProfile() {
 
   return (
     <div className="sec-font ">
+      
       <form
         action=""
-        className="px-[15%] py-[5%] flex gap-8 flex-col"
+        className=" md:px-[15%] py-[5%] flex gap-8 flex-col my-20 md:my-[5%]"
         onSubmit={(e) => {
           e.preventDefault();
           uploadProfile();
         }}
       >
+        <p>
+      The Osisi Project aims to keep an ever growing record of family members. <br /> <br /> This form makes it easy to add and connect family members, preserving your shared history for generations to come.
+      </p>
         <section className=" flex flex-wrap gap-4">
         <div>
             <label htmlFor="title" className="text-sm">

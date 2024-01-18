@@ -11,6 +11,8 @@ import Form from '@routes/pages/Form';
 import AddProfile from '@routes/pages/family-tree/AddProfile';
 import UpDateProfile from '@routes/pages/family-tree/UpDateProfile';
 import ProfileDetail from '@routes/pages/family-tree/ProfileDetail';
+import Home from '@routes/pages/home/Home';
+import ViewFamilyPage from '@routes/pages/family-tree/view/ViewFamilyPage';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,10 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children:[
           {
+            path: "/family-tree/view",
+            element: <ViewFamilyPage />,
+          },
+          {
             path: "/family-tree/add",
             element: <AddProfile />,
           },
@@ -35,7 +41,12 @@ const router = createBrowserRouter([
             path: "/family-tree/detail",
             element: <ProfileDetail />,
           },
-        ]
+        ],
+      },
+      {
+        path: "/",
+        element: <Home />,
+        errorElement: <ErrorPage />,
       },
     ],
   },

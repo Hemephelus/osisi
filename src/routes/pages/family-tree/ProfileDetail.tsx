@@ -47,7 +47,7 @@ function ProfileDetail() {
 
 
   return (
-    <section className="px-[5%] py-[5%] flex gap-8 flex-col sec-font  bg-[#00000010] shadow-2xl border">
+    <section className="px-[5%] py-[5%] flex gap-8 flex-col sec-font  bg-[#00000010] shadow-2xl border justify-center items-center text-center m-[5%]">
       <section className=" flex justify-center items-center flex-col gap-4 capitalize w-full">
         <figure className="h-[100px] w-[100px] rounded-full bg-[#FFFDD0] text-[#691540] flex items-center justify-center text-5xl pri-font ">
         {profile?.first_name[0]}

@@ -6,12 +6,15 @@ export default function Root() {
   // "https://script.google.com/macros/s/AKfycbzltce5xhRkPzFDOMmzbmtfPUm-vFojEVjmmXCu_gwkDpRV_lIvXUXXI5oKDk0GQrre/exec"
   "https://script.google.com/macros/s/AKfycbzA0XXdfifr6Y5k2pePOs6Lj5ga5brlvGK-s5DlCSr-6RakcL8I9wHPgSjHpKqhSYOb/exec"
   return (
-      <div className="bg-[#691540] min-h-screen text-[#FFFDD0] pri-font">
-        <nav className="p-3 flex justify-between shadow-xl items-center">
+      <div className="bg-[#040C24] min-h-screen text-[#FFFDD0] pri-font grid grid-rows-[auto,1fr]">
+        <nav className="p-3 flex justify-between shadow-xl items-center sticky top-0 bg-[#ffffff10] w-full z-20">
+        
+        <Link to={'/'}>
         <h1 className="text-4xl font-bold">osisi</h1>
+        </Link>
         <div>
-        <Link to={'/family-tree/add?referer_id=null&relationship=self'}>
-          Create Family
+        <Link to={'/family-tree/view'}>
+          View Family Tree
         </Link>
         </div>
         </nav>
