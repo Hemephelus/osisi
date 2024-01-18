@@ -1,4 +1,6 @@
+// @ts-nocheck
 // import React from "react";
+
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 
 interface FamilyData {
@@ -32,7 +34,7 @@ function sketch(p5: P5CanvasInstance) {
   let noNodes = 30;
   let noConn = 10;
   let gravityConstant = 1.1;
-  let forceConstant = 10000;
+  let forceConstant = 5000;
   let physics = true;
 
   let nodes: Node[] = [];
