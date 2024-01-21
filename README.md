@@ -1,10 +1,11 @@
 To Do List
 
-1. Address Panning effect state.
-2. Add centroid logic
-3. Add animations to show from origin to everyone else
-4. Add colors to show relationships
-5. Add Filters for different relationships
+1. Add centroid logic
+2. Add animations to show from origin to everyone else
+3. Add colors to show relationships
+4. Add Filters for different relationships
+5. Firgure out form creation and connetion.
+6. Address Panning effect state.
 
 Done
 1. Work on api to for form

@@ -1,8 +1,13 @@
 // @ts-nocheck
 // import React from "react";
 
+import { PanDraw, ZoomDraw, ZoomPanSetup } from "@utils/ZoomPan";
 import { useEffect } from "react";
-import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
+import {
+  P5CanvasInstance,
+  P5WrapperClassName,
+  ReactP5Wrapper,
+} from "react-p5-wrapper";
 
 interface FamilyData {
   data: {
@@ -17,7 +22,8 @@ let profile: any[] = [];
 let parent: any[] = [];
 let child: any[] = [];
 let spouse: any[] = [];
-
+let id = "18d1158c551-309";
+let pan = false;
 
 function sketch(p5: P5CanvasInstance) {
   interface Node {
@@ -38,7 +44,7 @@ function sketch(p5: P5CanvasInstance) {
   let nodeCon = [];
   let clicked = false;
   let lerpValue = 0.2;
-  let startDisMultiplier = 10;
+  let startDisMultiplier = 1;
   let closeNode;
   let closeNodeMag;
   let canvas;
@@ -47,47 +53,39 @@ function sketch(p5: P5CanvasInstance) {
   p5.setup = () => {
     let canvas = p5.createCanvas(window.innerWidth, window.innerHeight);
     canvas.position(0, 0);
-    //   canvas.mouseWheel((event: WheelEvent) => {
-    //     Controls.zoom(controls).worldZoom(event);
-    // });
-    //   // canvas.mouseWheel(e => {Controls.zoom(controls).worldZoom(e); })
-
+    ZoomPanSetup(canvas, P5WrapperClassName);
     p5.fill(200);
     checkbox = p5.createCheckbox();
-    for (let i = 0; i < profile.length; i++) {
-      if(profile[i].id === profile[10].id){
-
-        let x = 0
-        let y = 0
-        let node = new Node(p5.createVector(x, y), 1000000, 6, profile[i]);
-        nodes.push(node);
-        console.log(profile[i]);
-        
-      }else{
-
-        let x = p5.random(
-          -startDisMultiplier * p5.width,
-          startDisMultiplier * p5.width
-        );
-        let y = p5.random(
-          -startDisMultiplier * p5.height,
-          startDisMultiplier * p5.height
-        );
-        let node = new Node(p5.createVector(x, y), 3,3, profile[i]);
-        nodes.push(node);
-      }
-    }
+    let selectedProfile = profile.filter(a => a.id === id)
+    addProfile(selectedProfile)
+  
     closeNode = nodes[0];
 
-    createConnections(parent);
-    createConnections(child);
-    createConnections(spouse);
+    // createConnections(parent);
+    // createConnections(child);
+    // createConnections(spouse);
   };
+
+  function addProfile(selectedProfile = []){
+    for (let i = 0; i < selectedProfile.length; i++) {
+      let x = p5.random(
+        -startDisMultiplier * p5.width,
+        startDisMultiplier * p5.width
+      );
+      let y = p5.random(
+        -startDisMultiplier * p5.height,
+        startDisMultiplier * p5.height
+      );
+      let node = new Node(p5.createVector(x, y), 3, 3, selectedProfile[i]);
+      nodes.push(node);
+    }
+  }
 
   p5.draw = () => {
     p5.background(4, 12, 36);
-    if (checkbox.checked()) {
-      ZoomPanDraw();
+    
+    if (pan) {
+      // PanDraw(p5);
     } else {
       p5.translate(p5.width / 2, p5.height / 2);
     }
@@ -156,8 +154,8 @@ function sketch(p5: P5CanvasInstance) {
     this: Node,
     pos = p5.createVector(0, 0),
     size: number,
-    r:number,
-    data: string[] = [],
+    r: number,
+    data: string[] = []
   ) {
     this.pos = pos;
     this.force = p5.createVector(0, 0);
@@ -178,7 +176,7 @@ function sketch(p5: P5CanvasInstance) {
     p5.stroke(255, 215, 0);
     p5.fill(255, 215, 0);
 
-    star(this.pos.x, this.pos.y, this.r, this.r*3, 6);
+    star(this.pos.x, this.pos.y, this.r, this.r * 3, 6);
     p5.noStroke();
     p5.fill(157, 165, 189);
     p5.text(this.data.first_name, this.pos.x, this.pos.y - 10);
@@ -228,7 +226,7 @@ function sketch(p5: P5CanvasInstance) {
   }
 }
 
-export function P5jsSketch({data={}}) {
+export function P5jsSketch({ data = {}, member_id, panState, zoomScale }) {
   useEffect(() => {
     if (data) {
       profile = data.data?.profile || [];
@@ -237,6 +235,11 @@ export function P5jsSketch({data={}}) {
       spouse = data.data?.spouses || [];
     }
   }, [data]);
-  
+
+  useEffect(() => {
+    id = member_id;
+    pan = panState;
+  }, [member_id, panState]);
+
   return <ReactP5Wrapper sketch={sketch} />;
 }

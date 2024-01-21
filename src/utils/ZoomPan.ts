@@ -4,62 +4,51 @@ const controls = {
     viewPos: { prevX: null,  prevY: null,  isDragging: false },
   }
 
-function ZoomPanSetup(canvas){
-    canvas.mouseWheel(e => {Controls.zoom(controls).worldZoom(e); })
+export function ZoomPanSetup(canvas,p5){
+    canvas.mouseWheel(e => {Controls.zoom(controls,p5).worldZoom(e); })
 }
 
-function ZoomPanDraw(){
-    translate(controls.view.x, controls.view.y);
-    scale(controls.view.zoom)
-    window.mousePressed = e => Controls.move(controls).mousePressed(e)
-    window.mouseDragged = e => Controls.move(controls).mouseDragged(e);
-    window.mouseReleased = e => Controls.move(controls).mouseReleased(e)
+export function ZoomDraw(p5){
+    p5.scale(controls.view.zoom)
 }
-
-/////////////////////////////////////////////////////////////////////
-
-function touchStarted() {
-    clicked = true
-    let mousePos = createVector(mouseX-width/2, mouseY-height/2)
-    nodes.forEach((node)=>{
-      if (mousePos.copy().sub(node.pos).mag() - closeNode.mass/(2 * PI) < mousePos.copy().sub(closeNode.pos).mag() - closeNode.mass/(2 * PI))
-        closeNode = node;
-    })
+export function PanDraw(p5){    
+    p5.translate(controls.view.x, controls.view.y);
+    
   }
   
-  function touchEnded() {
-    clicked = false
-    lerpValue = 0.2
-  }
-
-/////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////
+  
+  window.mousePressed = e => Controls.move(controls,p5).mousePressed(e)
+  window.mouseDragged = e => Controls.move(controls,p5).mouseDragged(e);
+  window.mouseReleased = e => Controls.move(controls,p5).mouseReleased(e)
 
 
 //////////////////////////////////////////////////////////////////////
 class Controls {
   static move(controls) {
-    function mousePressed(e) {
+    mousePressed = (e) => {
       controls.viewPos.isDragging = true;
       controls.viewPos.prevX = e.clientX;
       controls.viewPos.prevY = e.clientY;
     }
 
-    function mouseDragged(e) {
+    mouseDragged = (e) => {
       const {prevX, prevY, isDragging} = controls.viewPos;
       if(!isDragging) return;
-
+      
       const pos = {x: e.clientX, y: e.clientY};
       const dx = pos.x - prevX;
       const dy = pos.y - prevY;
-
+      
       if(prevX || prevY) {
         controls.view.x += dx;
         controls.view.y += dy;
         controls.viewPos.prevX = pos.x, controls.viewPos.prevY = pos.y
       }
     }
-
-    function mouseReleased() {
+    
+   
+      mouseReleased = (e) => {
       controls.viewPos.isDragging = false;
       controls.viewPos.prevX = null;
       controls.viewPos.prevY = null;
@@ -72,10 +61,10 @@ class Controls {
     }
   }
 
-  static zoom(controls) {
+  static zoom(controls,p5) {
     function calcPos(x, y, zoom) {
-      const newX = width - (width * zoom - x);
-      const newY = height - (height * zoom - y);
+      const newX = p5.width - (p5.width * zoom - x);
+      const newY = p5.height - (p5.height * zoom - y);
       return {x: newX, y: newY}
     }
 
@@ -86,11 +75,11 @@ class Controls {
       const zoom = 1 * direction * factor;
       const minZoom = 0.05
       
-      const wx = (x-controls.view.x)/(width*controls.view.zoom);
-      const wy = (y-controls.view.y)/(height*controls.view.zoom);
+      const wx = (x-controls.view.x)/(p5.width*controls.view.zoom);
+      const wy = (y-controls.view.y)/(p5.height*controls.view.zoom);
       
-      controls.view.x -= wx*width*zoom;
-      controls.view.y -= wy*height*zoom;
+      controls.view.x -= wx*p5.width*zoom;
+      controls.view.y -= wy*p5.height*zoom;
 
       controls.view.zoom += deltaY > 0 ? 0 : 0.001;
       if(controls.view.zoom <= minZoom){
