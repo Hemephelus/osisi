@@ -56,14 +56,14 @@ function sketch(p5: P5CanvasInstance) {
     ZoomPanSetup(canvas, P5WrapperClassName);
     p5.fill(200);
     checkbox = p5.createCheckbox();
-    let selectedProfile = profile.filter(a => a.id === id)
+    let selectedProfile = profile.map(a => a)
     addProfile(selectedProfile)
   
     closeNode = nodes[0];
 
-    // createConnections(parent);
-    // createConnections(child);
-    // createConnections(spouse);
+    createConnections(parent);
+    createConnections(child);
+    createConnections(spouse);
   };
 
   function addProfile(selectedProfile = []){
