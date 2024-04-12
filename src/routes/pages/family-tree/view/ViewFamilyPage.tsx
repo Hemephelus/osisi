@@ -7,6 +7,10 @@ import { TfiHandDrag } from "react-icons/tfi";
 import { IoMdAdd } from "react-icons/io";
 import { RiSubtractFill } from "react-icons/ri";
 import { useState } from "react";
+import { useBearStore } from "@stores/test";
+import { IoMdSearch } from "react-icons/io";
+import MyCombobox from "../components/Combobox";
+
 
 // import React from 'react'
 function ViewFamilyPage() {
@@ -28,6 +32,9 @@ function ViewFamilyPage() {
     }
   }
 
+  const increasePopulation = useBearStore((state) => state.increase);
+  const bears = useBearStore((state) => state.bears);
+
   if (isLoading) {
     return <FamilyTreeSkeleton />;
   }
@@ -42,11 +49,16 @@ function ViewFamilyPage() {
 
   return (
     <div
-      className={`h-full w-full flex justify-end relative overflow-hidden ${
+      className={`h-full w-full flex justify-end relative overflow-hidden sec-font text-base ${
         pan ? " active:cursor-grabbing cursor-grab " : ""
       }`}
     >
-      <P5jsSketch data={data} member_id={id} panState={pan} zoomScale={zoomScale} />
+      <P5jsSketch
+        data={data}
+        member_id={id}
+        panState={pan}
+        zoomScale={zoomScale}
+      />
 
       <aside className=" w-[250px] p-2 m-2 z-10 h-fit grid gap-2">
         <section className="grid grid-cols-4 gap-2 w-full  h-[50px]">
@@ -88,10 +100,17 @@ function ViewFamilyPage() {
             <RiSubtractFill />
           </button>
         </section>
+        <section>
+        <p>Point Of View (P.O.V)</p>
+        <p>Nwachukwu Ujubuonu</p>
+        </section>
+        <div  className="flex  border-b p-2 gap-2">
+        <IoMdSearch size={24}/>
+          <input type="search" placeholder="Search..." className="bg-transparent w-full outline-none" />
 
-        <button className="bg-slate-600 p-2">Children</button>
-        <button className="bg-slate-600 p-2">Spouses</button>
-        <button className="bg-slate-600 p-2">Spouses</button>
+        </div>
+      
+        <MyCombobox />
       </aside>
     </div>
   );
