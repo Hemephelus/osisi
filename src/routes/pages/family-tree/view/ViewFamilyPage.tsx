@@ -3,13 +3,13 @@ import useGetRequest from "@hooks/useGetRequest";
 import { useSearchParams } from "react-router-dom";
 import { useOsisiContext } from "@context/useOsisiContext";
 import FamilyTreeSkeleton from "../components/FamilyTreeSkeleton";
-import { TfiHandDrag } from "react-icons/tfi";
-import { IoMdAdd } from "react-icons/io";
-import { RiSubtractFill } from "react-icons/ri";
-import { useState } from "react";
-import { useBearStore } from "@stores/test";
-import { IoMdSearch } from "react-icons/io";
-import MyCombobox from "../components/Combobox";
+// import { TfiHandDrag } from "react-icons/tfi";
+// import { IoMdAdd } from "react-icons/io";
+// import { RiSubtractFill } from "react-icons/ri";
+// import { useState } from "react";
+// import { useBearStore } from "@stores/test";
+// import { IoMdSearch } from "react-icons/io";
+// import MyCombobox from "../components/Combobox";
 
 
 // import React from 'react'
@@ -20,20 +20,22 @@ function ViewFamilyPage() {
   let [data, isLoading, error] = useGetRequest(
     `${OSISI_URL}?id=${id}&request_type=get_family`
   );
-  const [wow, setWow] = useState(id);
-  const [pan, setPan] = useState(false);
-  const [isMax, setIsMax] = useState(false);
-  const [isMin, setIsMin] = useState(false);
-  const [zoomScale, setZoomScale] = useState("100");
+  // const [wow, setWow] = useState(id);
+  // const [pan, setPan] = useState(false);
+  // const isMax = false
+  // const isMin = false
+  // const [isMax, setIsMax] = useState(false);
+  // const [isMin, setIsMin] = useState(false);
+  // const [zoomScale, setZoomScale] = useState("100");
 
-  function handleZoomInput(value: string): void {
-    if (typeof value === "string") {
-      setZoomScale(value);
-    }
-  }
+  // function handleZoomInput(value: string): void {
+  //   if (typeof value === "string") {
+  //     setZoomScale(value);
+  //   }
+  // }
 
-  const increasePopulation = useBearStore((state) => state.increase);
-  const bears = useBearStore((state) => state.bears);
+  // const increasePopulation = useBearStore((state) => state.increase);
+  // const bears = useBearStore((state) => state.bears);
 
   if (isLoading) {
     return <FamilyTreeSkeleton />;
@@ -50,17 +52,17 @@ function ViewFamilyPage() {
   return (
     <div
       className={`h-full w-full flex justify-end relative overflow-hidden sec-font text-base ${
-        pan ? " active:cursor-grabbing cursor-grab " : ""
+        false ? " active:cursor-grabbing cursor-grab " : ""
       }`}
     >
       <P5jsSketch
         data={data}
         member_id={id}
-        panState={pan}
-        zoomScale={zoomScale}
+        panState={false}
+        zoomScale={'100'}
       />
 
-      <aside className=" w-[250px] p-2 m-2 z-10 h-fit grid gap-2">
+      {/* <aside className=" w-[250px] p-2 m-2 z-10 h-fit grid gap-2">
         <section className="grid grid-cols-4 gap-2 w-full  h-[50px]">
           <button
             className={`p-2 h-[50px] grid place-items-center hover:scale-95 active:scale-100 duration-300 ${
@@ -90,7 +92,7 @@ function ViewFamilyPage() {
           />
           <button
             className={`p-2 h-[50px] grid place-items-center  duration-300 ${
-              isMax
+              isMin
                 ? "opacity-20 bg-[#ffffff] text-[#000000]"
                 : "hover:scale-95 active:scale-100 text-[#ffffff] bg-[#ffffff40] "
             }`}
@@ -111,7 +113,7 @@ function ViewFamilyPage() {
         </div>
       
         <MyCombobox />
-      </aside>
+      </aside> */}
     </div>
   );
 }
