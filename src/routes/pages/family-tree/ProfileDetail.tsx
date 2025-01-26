@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { CiEdit } from "react-icons/ci";
-import useGetRequest from "@hooks/useGetRequest";
-import { useOsisiContext } from "@context/useOsisiContext";
-import { formatDate } from "@utils/formatDate";
+import useGetRequest from "@/hooks/useGetRequest";
+import { useOsisiContext } from "@/context/useOsisiContext";
+import { formatDate } from "@/utils/formatDate";
 import ProfileSkeleton from "./components/ProfileSkeleton";
+import { PencilSquareIcon } from "@heroicons/react/24/solid";
 
 interface Profile {
   first_name: "";
@@ -53,7 +53,7 @@ function ProfileDetail() {
         {profile?.first_name[0]}
         </figure>
         <Link to={"/"} title="edit">
-          <CiEdit size={24} />
+          <PencilSquareIcon className="size-6" />
         </Link>
         <p className="text-center text-2xl">{profile?.first_name} {profile?.middle_name} {profile?.last_name}</p>
         <p>

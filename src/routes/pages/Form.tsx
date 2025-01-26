@@ -1,7 +1,10 @@
 import { Outlet } from "react-router-dom";
 
 function Form() {
-  return <div className="justify-center items-center flex h-full">
+  return <div className="px-12 py-12  flex flex-col h-full">
+    <h1 className="text-2xl w-full border-b pb-2 ">
+      Our Family
+    </h1>
      <Outlet />
   </div>;
 }

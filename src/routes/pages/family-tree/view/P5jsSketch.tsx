@@ -1,7 +1,7 @@
 // @ts-nocheck
 // import React from "react";
 
-import { PanDraw, ZoomDraw, ZoomPanSetup } from "@utils/ZoomPan";
+import { PanDraw, ZoomDraw, ZoomPanSetup } from "@/utils/ZoomPan";
 import { useEffect } from "react";
 import {
   P5CanvasInstance,

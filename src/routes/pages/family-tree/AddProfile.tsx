@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import usePostRequest from "@hooks/usePostRequest";
-import { generateId } from "@utils/generate";
-import { useOsisiContext } from "@context/useOsisiContext";
+import usePostRequest from "@/hooks/usePostRequest";
+import { generateId } from "@/utils/generate";
+import { useOsisiContext } from "@/context/useOsisiContext";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 interface Profile {
@@ -71,7 +71,6 @@ function AddProfile() {
 
   return (
     <div className="sec-font ">
-      
       <form
         action=""
         className=" md:px-[15%] py-[5%] flex gap-8 flex-col my-20 md:my-[5%]"
@@ -81,10 +80,13 @@ function AddProfile() {
         }}
       >
         <p>
-      The Osisi Project aims to keep an ever growing record of family members. <br /> <br /> This form makes it easy to add and connect family members, preserving your shared history for generations to come.
-      </p>
+          The Osisi Project aims to keep an ever growing record of family
+          members. <br /> <br /> This form makes it easy to add and connect
+          family members, preserving your shared history for generations to
+          come.
+        </p>
         <section className=" flex flex-wrap gap-4">
-        <div>
+          <div>
             <label htmlFor="title" className="text-sm">
               Title
             </label>
@@ -115,7 +117,7 @@ function AddProfile() {
               required
             />
           </div>
-          
+
           <div>
             <label htmlFor="middle_name" className="text-sm">
               Middle Name
@@ -144,7 +146,6 @@ function AddProfile() {
               onChange={(e) => {
                 updateProfile(e.target.value, "last_name");
               }}
-              
             />
           </div>
         </section>

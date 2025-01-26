@@ -9,6 +9,18 @@ export default {
       boxShadow: {
         "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
       },
+      fontFamily: {
+        'overlock-sc': ['"Overlock SC"', 'cursive'],
+        'sora': ['Sora', 'sans-serif'],
+      },
+      backgroundColor: {
+        'pri': '#040C24',
+        'sec': '#FFFDD0',
+      },
+      textColor: {
+        'pri': '#040C24',
+        'sec': '#FFFDD0',
+      },
     },
   },
   plugins: [],
