@@ -104,7 +104,7 @@ function ProfileDetail() {
           N
         </figure>
         <Link to={"/"} title="edit">
-          <CiEdit size={24} />
+          {/* <CiEdit size={24} /> */}
         </Link>
         <p className="text-center text-2xl">nwachukwu samuel ujubuonu</p>
         <p>
