@@ -16,7 +16,7 @@ export function getProfile(
       )
 
     return {
-      name: profile.first_name,
+      name: profile.full_name,
       id: currentRelationship.from_person_id,
       type:"relationship",
       nodes: [

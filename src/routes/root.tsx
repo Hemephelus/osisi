@@ -27,7 +27,7 @@ export default function Root() {
       </header>
 
       {/* Page Content */}
-      <main className="container mx-auto px-4 py-8 bg-white/5">
+      <main className=" min-h-screen px-4 py-8 bg-white/5">
         <Outlet />
       </main>
     </div>

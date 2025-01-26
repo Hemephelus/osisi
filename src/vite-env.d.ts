@@ -10,12 +10,11 @@ type FamilyNode = {
 
 interface Profile {
   id: string;
-  first_name: string;
-  last_name: string;
-  middle_name: string;
+  full_name: string;
   sex: string;
   status: string;
-  date_of_birth: string;
+  year_of_birth: string;
+  title?: string;
 }
 
 type Relationship = {

@@ -23,7 +23,7 @@ function ViewFamilyPage() {
   >(undefined);
   const family: FamilyNode[] = [
     {
-      name: rootProfile?.first_name || "",
+      name: rootProfile?.full_name || "",
       id: rootProfile?.id,
       type: "relationship",
       nodes: [
@@ -63,7 +63,7 @@ function ViewFamilyPage() {
 
   return (
     <div
-      className={`h-full w-full flex  overflow-hidden sec-font text-base`}
+      className={`h-full w-full flex  overflow-x-auto sec-font text-base`}
     >
       {mode === 'add'? (<AddProfile/>):(<></>)}
       <ul>

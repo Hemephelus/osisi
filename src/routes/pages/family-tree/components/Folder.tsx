@@ -28,7 +28,7 @@ export default function Folder({
 
       if (node.type === "relationship") {
         family = {
-          name: profile.first_name,
+          name: profile.full_name,
           id: profile.id,
           nodes: [
             {
@@ -74,7 +74,7 @@ export default function Folder({
               } duration-300`}
             />
             <FolderIcon className="size-6 text-sec" />
-            {node?.name}
+            <span className="whitespace-nowrap">{node?.name}</span>
           </button>
         ) : (
       

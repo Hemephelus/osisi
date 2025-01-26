@@ -7,12 +7,10 @@ import { Dialog } from "@headlessui/react";
 
 function AddProfile() {
   const initialProfile = {
-    first_name: "",
-    middle_name: "",
-    last_name: "",
+    full_name: "",
     sex: "",
     status: "",
-    date_of_birth: "",
+    year_of_birth: "",
     title: "",
     id: generateId(),
   };
@@ -37,7 +35,7 @@ function AddProfile() {
   useEffect(() => {
     if (response) {
       //  Navigate to different page.
-      navigate("/family-tree/detail?id=" + profile.id);
+      navigate("/family?id=" + profile.id);
     }
   }, [response]);
 
@@ -67,8 +65,8 @@ function AddProfile() {
         className="relative z-50"
       >
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <Dialog.Panel className="px-[5%] py-[5%] flex gap-8 flex-col  font-sora  bg-sec shadow-2xl border justify-center items-center text-center m-[5%] text-pri">
-            <div className="">
+          <Dialog.Panel className="px-[5%] py-[5%]  font-sora  bg-sec shadow-2xl border  text-center m-[5%] text-pri max-h-[500px] overflow-y-auto">
+     
               <form
                 action=""
                 className=" flex gap-12 flex-col "
@@ -77,72 +75,39 @@ function AddProfile() {
                   uploadProfile();
                 }}
               >
-                <p className="text-left">
-                  The Osisi Project preserves family history by making it easy
-                  to add and connect family members, creating a growing record
-                  for generations to come.
+                <p className="text-left text-sm md:text-lg">
+                  Please fill out the form below to add a new family member to your family tree. Ensure all required fields are completed accurately.
                 </p>
                 <section className=" flex flex-wrap gap-4">
-                  {/* <div>
+                  <div className="flex flex-col items-start">
                     <label htmlFor="title" className="text-sm">
                       Title
                     </label>
-                    <br />
                     <input
                       type="text"
                       id="title"
+                      placeholder="E.g Lolo"
                       value={profile.title}
-                      className="bg-transparent border-b outline-none"
+                      className="bg-transparent border-b  border-acc outline-none"
                       onChange={(e) => {
                         updateProfile(e.target.value, "title");
                       }}
                     />
-                  </div> */}
-                  <div>
-                    <label htmlFor="first_name" className="text-sm">
-                      First Name*
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <label htmlFor="first_name" className="text-sm text-left">
+                      Full Name*
                     </label>
-                    <br />
                     <input
                       type="text"
-                      id="first_name"
-                      value={profile.first_name}
-                      className="bg-transparent border-b outline-none"
+                      id="full_name"
+                      value={profile.full_name}
+                      placeholder="E.g Chinelo"
+                      className="bg-transparent border-b border-acc outline-none"
                       onChange={(e) => {
-                        updateProfile(e.target.value, "first_name");
+                        updateProfile(e.target.value, "full_name");
                       }}
                       
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="middle_name" className="text-sm">
-                      Middle Name
-                    </label>
-                    <br />
-                    <input
-                      type="text"
-                      id="middle_name"
-                      value={profile.middle_name}
-                      className="bg-transparent border-b outline-none"
-                      onChange={(e) => {
-                        updateProfile(e.target.value, "middle_name");
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="last_name" className="text-sm">
-                      Last Name
-                    </label>
-                    <br />
-                    <input
-                      type="text"
-                      id="last_name"
-                      value={profile.last_name}
-                      className="bg-transparent border-b outline-none"
-                      onChange={(e) => {
-                        updateProfile(e.target.value, "last_name");
-                      }}
                     />
                   </div>
                 </section>
@@ -210,15 +175,16 @@ function AddProfile() {
                 </section>
                 <section className="flex items-start flex-col ">
                   <label htmlFor="date_of_birth" className="text-sm text-left pb-2">
-                    Date of Birth
+                    Year of Birth
                   </label>
                   <input
-                    type="date"
+                    type="text"
                     id="date_of_birth"
-                    value={profile.date_of_birth}
+                    placeholder="E.g 1999"
+                    value={profile.year_of_birth}
                     className="bg-transparent border-b outline-none"
                     onChange={(e) => {
-                      updateProfile(e.target.value, "date_of_birth");
+                      updateProfile(e.target.value, "year_of_birth");
                     }}
                   />
                 </section>
@@ -239,14 +205,12 @@ function AddProfile() {
 
                </section>
               </form>
-            </div>
+      
           </Dialog.Panel>
         </div>
       </Dialog>
     </>
   );
 }
-// osisi/family-tree/add?referer_id=null&relationship=self
-// osisi/family-tree/update?id=
-// osisi/family-tree/view?id=
+
 export default AddProfile;

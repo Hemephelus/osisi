@@ -1,1 +1,1 @@
-export const OSISI_URL ='https://script.google.com/macros/s/AKfycbxfnNurZjmCVsFnd7KpyVw2xbqidw0rV5anuM1PCRNVBYPS402EimAd3ZEdVtpNBLdf/exec'
+export const OSISI_URL ='https://script.google.com/macros/s/AKfycbyvKoIJaWqQYBsXfvi3uVPjBHZru68YTdoFttOsKZ12CebWSqIWTQt1Jwr3zjZfeIMZ/exec'

@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 
 function Form() {
-  return <div className="px-12 py-12  flex flex-col ">
+  return <div className="p-4 md:p-12 flex flex-col ">
     <h1 className="text-2xl w-full border-b pb-2 ">
       Our Family
     </h1>
