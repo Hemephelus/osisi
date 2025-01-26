@@ -1,10 +1,11 @@
 import { getProfile } from "@/utils/generateNodes";
 import {
   ChevronRightIcon,
-  DocumentIcon,
+  // DocumentIcon,s
   FolderIcon,
 } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import ProfilePopUp from "./ProfilePopUp";
 
 export default function Folder({
   node,
@@ -76,10 +77,9 @@ export default function Folder({
             {node?.name}
           </button>
         ) : (
-         <>
-          <DocumentIcon className="ml-[22px] size-6 text-sec" />
-          {node?.name}
-         </>
+      
+           <ProfilePopUp profile={node.content!} />
+    
         )}
         {/* {node?.name} */}
       </span>

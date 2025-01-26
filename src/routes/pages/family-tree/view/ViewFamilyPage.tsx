@@ -4,10 +4,13 @@ import FamilyTreeSkeleton from "../components/FamilyTreeSkeleton";
 import { OSISI_URL } from "@/constants";
 import { useEffect, useState } from "react";
 import Folder from "../components/Folder";
+import AddProfile from "../AddProfile";
 
 function ViewFamilyPage() {
   let [searchParams] = useSearchParams();
   const id = searchParams.get("id") || "18d1158c551-309";
+  const mode = searchParams.get("mode") || "view";
+  // const relationship = searchParams.get("relationship") || "";
   let [data, isLoading, error] = useGetRequest(
     `${OSISI_URL}?id=${id}&request_type=get_family`
   );
@@ -60,10 +63,9 @@ function ViewFamilyPage() {
 
   return (
     <div
-      className={`h-full w-full flex  overflow-hidden sec-font text-base ${
-        false ? " active:cursor-grabbing cursor-grab " : ""
-      }`}
+      className={`h-full w-full flex  overflow-hidden sec-font text-base`}
     >
+      {mode === 'add'? (<AddProfile/>):(<></>)}
       <ul>
         {family.map((folder, index) => (
           <Folder

@@ -16,10 +16,17 @@ export default {
       backgroundColor: {
         'pri': '#040C24',
         'sec': '#FFFDD0',
+        'acc': '#691540',
       },
       textColor: {
         'pri': '#040C24',
+        'acc': '#691540',
         'sec': '#FFFDD0',
+      },
+      borderColor: {
+        'pri': '#040C24',
+        'sec': '#FFFDD0',
+        'acc': '#691540',
       },
     },
   },
