@@ -4,7 +4,7 @@ import {
   DocumentIcon,
   FolderIcon,
 } from "@heroicons/react/24/solid";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Folder({
   node,
@@ -32,7 +32,7 @@ export default function Folder({
           nodes: [
             {
               name: "Profile",
-              content: profiles?.filter((p) => profile.id === profile.id)[0],
+              content: profiles?.filter((p) => p.id === profile.id)[0],
             },
             {
               name: "Parents",
